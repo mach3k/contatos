@@ -1,3 +1,66 @@
+## Cadastro de contatos
+
+Consiste em um CRUD simples de empresas e contatos, com endereços e telefones, desenvolvido em Laravel 6.
+
+## Requisitos básicos
+
+O contato deve ser composto por {
+    Empresa,
+    Nome,
+    Data/hora de cadastro,
+    Data/hora de alteração,
+    Telefones, de quantidade variável
+}
+
+A empresa deverá ser compostar por {
+    Nome,
+    CPF ou CNPJ,
+    Município
+}
+
+Três regras de negócio definem o comportamento básico do "sistema":
+- Pessoa física necessita cadastrar RG e data de nascimento;
+- Pessoa jurídica precisa possuir Nome Fantasia;
+- A listegem de contatos deve conter filtros por Nome e CPF/CNPJ.
+
+Desejável que seja oferecido a listagem de clientes por API REST.
+
+## Proposta de solução
+
+Buscando oferecer a funcionalidade de um módulo de cadastro básico, foi desenvolvido um plano inicial, ilustrado pelo diagrama abaixo:
+
+<img src="./logico.jpg" />
+
+Neles está previsto a implementação de armazenamento de informações sobre pessoas físicas e jurídicas, com endereços, telefones, endereços de correspondência eletrônica, foto de perfil ou logotipo e usuário para autenticação.
+
+Não foi implementado a persistência de e-mails, imagens e usuários, permanecendo com seus recursos de forma pública.
+
+O código carece de muita refatoração, para se adequar à tecnologias mais atuais de conduta de front-end. 
+
+## Requisitos de instalação
+
+Para rodar esta aplicação você vai precisar ter instalado:
+- <a href="https://getcomposer.org/download/">Composer</a> v1.9+
+- <a href="https://nodejs.org/en/download/">NodeJS</a> v10+
+- <a href="https://www.php.net/downloads">PHP</a> v7.2+
+- <a href="https://mariadb.com/kb/en/getting-installing-and-upgrading-mariadb/">MariaDB</a>
+
+Opcionalmente:
+- Servidor Web local. Por exemplo: <a href="https://www.apachefriends.org/pt_br/index.html">Xampp v7+</a> (Apache + PHP v7.2+ + MariaDB)
+
+Para executar:
+- Descompactar o conteúdo do arquivo de códigos na pasta do servidor web, se estiver usando um
+- Criar um banco de dados vazio no MariaDB, com o nome de "contatos"
+- Entrar pelo console na pasta do projeto
+- Executar o comando: composer install
+- Executar o comando: npm install
+- Executar o comando: "php artisan migrate --seed"
+- se não tiver um servidor web, execute o comando: php artisan serve
+- a aplicação estará disponível em http://127.0.0.1:8000
+- se estiver utilizando o servidor web, acesse com o navegador a pasta do projeto (http://localhost/.../contatos/public)
+
+<hr/>
+
 <p align="center"><img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="400"></p>
 
 <p align="center">
@@ -7,72 +70,6 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
 </p>
 
-## About Laravel
-
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
-
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
-
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
-
-## Learning Laravel
-
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
-
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
-
-## Laravel Sponsors
-
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
-
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[British Software Development](https://www.britishsoftware.co)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- [UserInsights](https://userinsights.com)
-- [Fragrantica](https://www.fragrantica.com)
-- [SOFTonSOFA](https://softonsofa.com/)
-- [User10](https://user10.com)
-- [Soumettre.fr](https://soumettre.fr/)
-- [CodeBrisk](https://codebrisk.com)
-- [1Forge](https://1forge.com)
-- [TECPRESSO](https://tecpresso.co.jp/)
-- [Runtime Converter](http://runtimeconverter.com/)
-- [WebL'Agence](https://weblagence.com/)
-- [Invoice Ninja](https://www.invoiceninja.com)
-- [iMi digital](https://www.imi-digital.de/)
-- [Earthlink](https://www.earthlink.ro/)
-- [Steadfast Collective](https://steadfastcollective.com/)
-- [We Are The Robots Inc.](https://watr.mx/)
-- [Understand.io](https://www.understand.io/)
-- [Abdel Elrafa](https://abdelelrafa.com)
-- [Hyper Host](https://hyper.host)
-- [Appoly](https://www.appoly.co.uk)
-- [OP.GG](https://op.gg)
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
 ## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+The Laravel framework is open-source software licensed under the [MIT license](https://opensource.org/licenses/MIT).

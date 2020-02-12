@@ -18,6 +18,6 @@ Route::resource('mesorregiao', 'Web\MesorregiaoController');
 Route::resource('estado', 'Web\EstadoController');
 Route::resource('regiao', 'Web\RegiaoController');
 Route::resource('pais', 'Web\PaisController');
-// Route::resource('imagem', 'Web\ImagemController');
+Route::resource('imagem', 'Web\ImagemController');
 // Route::resource('email', 'Web\EmailController');
 // Route::resource('tipoemail', 'Web\TipoEmailController');
