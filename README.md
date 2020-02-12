@@ -31,7 +31,7 @@ Buscando oferecer a funcionalidade de um módulo de cadastro básico, foi desenv
 
 <img src="./logico.jpg" />
 
-Neles está previsto a implementação de armazenamento de informações sobre pessoas físicas e jurídicas, com endereços, telefones, endereços de correspondência eletrônica, foto de perfil ou logotipo e usuário para autenticação.
+Nele está previsto a implementação de armazenamento de informações sobre pessoas físicas e jurídicas, com endereços, telefones, endereços de correspondência eletrônica, foto de perfil ou logotipo e usuário para autenticação.
 
 Não foi implementado a persistência de e-mails, imagens e usuários, permanecendo com seus recursos de forma pública.
 
