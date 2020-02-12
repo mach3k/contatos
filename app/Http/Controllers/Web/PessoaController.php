@@ -47,6 +47,8 @@ class PessoaController extends Controller {
         ->with('foto')
         ->findOrFail($id);
 
+        // dd($registro);
+
         if($registro->juridica)
             return redirect()->route('empresa.show', $registro->id);
 
@@ -102,7 +104,8 @@ class PessoaController extends Controller {
         try {
             $this->validate($request,[
                 'nome'=> 'required|max:200',
-                'estado_id' => 'required|numeric',
+                'dataNascimento' => 'required',
+                'rg_ie' => 'required|max:20',
             ]);
 
             $registro = Pessoa::findOrFail($id);

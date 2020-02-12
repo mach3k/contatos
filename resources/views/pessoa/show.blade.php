@@ -31,7 +31,7 @@
             <div class="card-header">
                 <h3 class="card-title">Registro</h3>
                 <div class="float-right">
-                    <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modalEditar">Editar registro</button>
+                    <button type="button" class="btn btn-sm btn-warning" data-toggle="modal" data-target="#modalEditar"><i class="far fa-fw fa-edit"></i> Editar</button>
                 </div>
             </div><!-- /.card-header -->
 
@@ -39,6 +39,7 @@
                 <div class="row">
                     <div class="col-sm-4">
                         <img class="img-fluid pad" src="{{asset('storage/images/sem_foto.png')}}" alt="Photo">
+                        <button type="button" class="btn btn-block btn-secondary btn-xs" data-toggle="modal" data-target="#modalFoto"><i class="fas fa-fw fa-camera"></i> Enviar foto</button>
                     </div>
 
                     <div class="col-sm-4">
@@ -94,12 +95,14 @@
                     </div>
                 </div>
 
+                <hr>
+
                 <div class="row">
                     <div class="card col-sm-12">
                         <div class="card-header">
                             <h4 class="card-title"><i class="fas fa-fw fa-map-marker-alt"></i> Endereços</h4>
                             <div class="float-right">
-                                <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modalEndereco"><i class="fas fa-plus"></i> Endereço</button>
+                                <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modalEndereco"><i class="fas fa-fw fa-plus"></i> Endereço</button>
                             </div>
                         </div>
                         <div class="card-body">
@@ -122,11 +125,9 @@
 
                                             <div class="col-sm-3">
                                                 <div class="float-right">
-                                                    <div class="btn-group">
-                                                        <button onclick="#" type="button" class="btn btn-sm btn-outline-warning"><i class="far fa-edit"></i> Editar</button>
-                                                        {{ method_field('DELETE') }}
-                                                        <button onclick="deleteEndereco('{{$endereco->id}}', '{{$registro->id}}')" type="button" class="btn btn-sm btn-outline-danger"><i class="fas fa-exclamation-triangle"></i> Excluir</button>
-                                                    </div>
+                                                    <button type="button" class="btn btn-sm btn-warning" data-toggle="modal" data-target="#modalEndereco"><i class="far fa-edit"></i> Editar</button>
+                                                    {{ method_field('DELETE') }}
+                                                    <button onclick="deleteEndereco('{{$endereco->id}}', '{{$registro->id}}')" type="button" class="btn btn-sm btn-outline-danger"><i class="fas fa-exclamation-triangle"></i> Excluir</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -182,11 +183,9 @@
                                             </div>
                                             <div class="col-sm-3">
                                                 <div class="float-right">
-                                                    <div class="btn-group">
-                                                        <button onclick="#" type="button" class="btn btn-sm btn-outline-warning"><i class="far fa-edit"></i> Editar</button>
-                                                        {{ method_field('DELETE') }}
-                                                    <button onclick="deleteTelefone('{{$telefone->id}}', '{{$registro->id}}')" type="button" class="btn btn-sm btn-outline-danger"><i class="fas fa-exclamation-triangle"></i> Excluir</button>
-                                                    </div>
+                                                    <button type="button" class="btn btn-sm btn-warning" data-toggle="modal" data-target="#modalTelefone"><i class="far fa-fw fa-edit"></i> Editar</button>
+                                                    {{ method_field('DELETE') }}
+                                                    <button onclick="deleteTelefone('{{$telefone->id}}', '{{$registro->id}}')" type="button" class="btn btn-sm btn-outline-danger"><i class="fas fa-fw fa-exclamation-triangle"></i> Excluir</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -240,8 +239,8 @@
                     <div class="row">
                         <div class="col-sm-12">
                             <div class="form-group">
-                                <label for="nome">*Nome</label>
-                                <input type="text" class="form-control" name="nome" maxlength="100" placeholder="" tabindex="-1" autofocus required />
+                                <label for="nome">Nome*</label>
+                                <input type="text" class="form-control" name="nome" value="{{$registro->nome}}" maxlength="100" placeholder="" tabindex="-1" autofocus required />
                             </div>
                         </div>
                     </div>
@@ -250,9 +249,12 @@
                         <div class="col-sm-12">
                             <div class="form-group">
                                 <label for="nomeSocial">Nome Social</label>
-                                <input type="text" class="form-control" name="nomeSocial" maxlength="100" placeholder="" />
+                                <input type="text" class="form-control" name="nomeSocial" value="{{$registro->nomeSocial}}" maxlength="100" placeholder="" />
                                 <div class="custom-control custom-checkbox">
-                                    <input class="custom-control-input" type="checkbox" id="utilizaNomeSocial" name="utilizaNomeSocial" value="1">
+                                    <input class="custom-control-input" type="checkbox" id="utilizaNomeSocial" name="utilizaNomeSocial" value="1"
+                                    @if ($registro->utilizaNomeSocial)
+                                        checked
+                                    @endif>
                                     <label for="utilizaNomeSocial" class="custom-control-label">Utiliza Nome Social</label>
                                 </div>
                             </div>
@@ -263,7 +265,7 @@
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label for="cargo">Cargo</label>
-                                <input type="text" class="form-control" name="cargo" maxlength="100" placeholder="" />
+                                <input type="text" class="form-control" name="cargo" value="{{$registro->cargo}}" maxlength="100" placeholder="" />
                             </div>
                         </div>
 
@@ -273,7 +275,15 @@
                                 <select name="empresa" id="empresa" class="form-control select2 select2-hidden-accessible" style="width: 100%;" data-select2-id="2" aria-hidden="true">
                                     <option selected data-select2-id="" value="">Selecione a empresa..</option>
                                     @foreach($empresas as $empresa)
-                                    <option data-select2-id="{{$empresa->id}}" value="{{$empresa->id}}">{{$empresa->nome}}</option>
+                                        @isset($registro->empregador)
+                                            @if ($empresa->id == $registro->empregador->id)
+                                                <option selected data-select2-id="{{$empresa->id}}" value="{{$empresa->id}}">{{$empresa->nome}}</option>
+                                            @else
+                                                <option data-select2-id="{{$empresa->id}}" value="{{$empresa->id}}">{{$empresa->nome}}</option>
+                                            @endif
+                                        @else
+                                            <option data-select2-id="{{$empresa->id}}" value="{{$empresa->id}}">{{$empresa->nome}}</option>
+                                        @endisset
                                     @endforeach
                                 </select>
                             </div>
@@ -288,7 +298,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
                                     </div>
-                                    <input type="date" class="form-control" name="dataNascimento" data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy" data-mask="" im-insert="false">
+                                    <input type="date" class="form-control" name="dataNascimento" value="{{$registro->dataNascimento}}" data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy" data-mask="" im-insert="false">
                                 </div>
                             </div>
                         </div>
@@ -299,7 +309,11 @@
                                 <select name="genero_id" id="genero_id" class="form-control select2 select2-hidden-accessible" style="width: 100%;" data-select2-id="2" aria-hidden="true">
                                     <option selected data-select2-id="" value="">Selecione o gênero..</option>
                                     @foreach($generos as $genero)
+                                    @if ($genero->id == $registro->genero->id)
+                                    <option selected data-select2-id="{{$genero->id}}" value="{{$genero->id}}">{{$genero->nome}}</option>
+                                    @else
                                     <option data-select2-id="{{$genero->id}}" value="{{$genero->id}}">{{$genero->nome}}</option>
+                                    @endif
                                     @endforeach
                                 </select>
                             </div>
@@ -310,15 +324,15 @@
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label for="cpf_cnpj">CPF (apenas números)</label>
-                                <input type="number" class="form-control" name="cpf_cnpj" maxlength="14" placeholder="">
+                                <input type="number" class="form-control" name="cpf_cnpj" value="{{$registro->cpf_cnpj}}" maxlength="14" placeholder="">
                             </div>
                             <input type="hidden" name="juridica" value="0">
                         </div>
 
                         <div class="col-sm-6">
                             <div class="form-group">
-                            <label for="rg_ie">*RG</label>
-                            <input type="number" class="form-control" name="rg_ie" maxlength="20" placeholder="" required>
+                            <label for="rg_ie">RG*</label>
+                            <input type="number" class="form-control" name="rg_ie" value="{{$registro->rg_ie}}" maxlength="20" placeholder="" required>
                             </div>
                         </div>
                     </div>

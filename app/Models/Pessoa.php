@@ -13,6 +13,7 @@ class Pessoa extends Model {
     ];
 
     public function getNome(){
+
         if ( $this->utilizaNomeSocial)
             return $this->nomeSocial;
 

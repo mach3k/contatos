@@ -47,6 +47,7 @@ class EmpresaController extends Controller {
         ->with('enderecos.tipo')
         ->with('telefones')
         ->with('telefones.tipo')
+        ->with('empregados')
         ->with('foto')
         ->findOrFail($id);
 

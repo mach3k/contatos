@@ -31,7 +31,7 @@
             <div class="card-header">
                 <h3 class="card-title">Registro</h3>
                 <div class="float-right">
-                    <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modalEditar">Editar registro</button>
+                    <button type="button" class="btn btn-sm btn-warning" data-toggle="modal" data-target="#modalEditar"><i class="far fa-fw fa-edit"></i> Editar</button>
                 </div>
             </div><!-- /.card-header -->
 
@@ -47,28 +47,64 @@
                             <dd>{{$registro->nomeSocial}}@if($registro->utilizaNomeSocial) (utiliza nome fantasia)@endisset</dd>
 
                         </dl>
-                        </div>
+                    </div>
 
-                        <div class="col-sm-6">
-                            <dl>
+                    <div class="col-sm-6">
+                        <dl>
 
-                                <dt>CNPJ</dt>
-                                @if(isset($registro->cpf_cnpj))
-                                    <dd>{{$registro->cnpjFormatado()}}</dd>
-                                @else
-                                    <dd>Não informado.</dd>
-                                @endif
+                            <dt>CNPJ</dt>
+                            @if(isset($registro->cpf_cnpj))
+                                <dd>{{$registro->cnpjFormatado()}}</dd>
+                            @else
+                                <dd>Não informado.</dd>
+                            @endif
 
-                                <dt>Inscrição Estadual</dt>
-                                @if(isset($registro->rg_ie))
-                                    <dd>{{$registro->rg_ie}}</dd>
-                                @else
-                                    <dd>Não informado.</dd>
-                                @endif
+                            <dt>Inscrição Estadual</dt>
+                            @if(isset($registro->rg_ie))
+                                <dd>{{$registro->rg_ie}}</dd>
+                            @else
+                                <dd>Não informado.</dd>
+                            @endif
 
                         </dl>
                     </div>
                 </div>
+
+                <hr>
+
+                @isset($registro->empregados)
+                <div class="row">
+                    <div class="card col-sm-12">
+                        <div class="card-header">
+                            <h4 class="card-title"><i class="far fa-id-card"></i> Funcionários</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="card-body table-responsive p-0">
+                                    <table class="table table-hover" id="funcionarios">
+                                        <thead>
+                                            <tr>
+                                            <th>Id</th>
+                                            <th>Nome</th>
+                                            <th>Cargo</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($registro->empregados as $empregado)
+                                            <tr>
+                                                <td>{{$empregado->id}}</td>
+                                                <td>{{$empregado->getNome()}}</td>
+                                                <td>{{$empregado->cargo}}</td>
+                                            </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @endisset
 
                 <div class="row">
                     <div class="card col-sm-12">
@@ -98,11 +134,9 @@
 
                                             <div class="col-sm-3">
                                                 <div class="float-right">
-                                                    <div class="btn-group">
-                                                        <button onclick="#" type="button" class="btn btn-sm btn-outline-warning"><i class="far fa-edit"></i> Editar</button>
-                                                        {{ method_field('DELETE') }}
-                                                        <button onclick="deleteEndereco('{{$endereco->id}}', '{{$registro->id}}')" type="button" class="btn btn-sm btn-outline-danger"><i class="fas fa-exclamation-triangle"></i> Excluir</button>
-                                                    </div>
+                                                    <button onclick="#" type="button" class="btn btn-sm btn-warning"><i class="far fa-edit"></i> Editar</button>
+                                                    {{ method_field('DELETE') }}
+                                                    <button onclick="deleteEndereco('{{$endereco->id}}', '{{$registro->id}}')" type="button" class="btn btn-sm btn-outline-danger"><i class="fas fa-exclamation-triangle"></i> Excluir</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -158,11 +192,9 @@
                                             </div>
                                             <div class="col-sm-3">
                                                 <div class="float-right">
-                                                    <div class="btn-group">
-                                                        <button onclick="#" type="button" class="btn btn-sm btn-outline-warning"><i class="far fa-edit"></i> Editar</button>
-                                                        {{ method_field('DELETE') }}
-                                                        <button onclick="deleteTelefone('{{$telefone->id}}', '{{$registro->id}}')" type="button" class="btn btn-sm btn-outline-danger"><i class="fas fa-exclamation-triangle"></i> Excluir</button>
-                                                    </div>
+                                                    <button onclick="#" type="button" class="btn btn-sm btn-warning"><i class="far fa-edit"></i> Editar</button>
+                                                    {{ method_field('DELETE') }}
+                                                    <button onclick="deleteTelefone('{{$telefone->id}}', '{{$registro->id}}')" type="button" class="btn btn-sm btn-outline-danger"><i class="fas fa-exclamation-triangle"></i> Excluir</button>
                                                 </div>
                                             </div>
                                         </div>

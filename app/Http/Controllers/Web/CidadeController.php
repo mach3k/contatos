@@ -13,7 +13,7 @@ class CidadeController extends Controller {
     protected $titleModal = 'Cidade';
 
     public function index() {
-        $registros = Cidade::with(['estado', 'mesorregiao'])->paginate();
+        $registros = Cidade::with(['estado', 'mesorregiao'])->get();
         $paises = Pais::all();
         $estados = Estado::all();
         $title = 'Cidades';

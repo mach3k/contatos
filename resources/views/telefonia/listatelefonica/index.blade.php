@@ -29,8 +29,7 @@
             <thead>
                 <tr style="cursor:pointer">
                     <th>Id</th>
-                    <th>Nome/Razão Social</th>
-                    <th>Social/Fantasia</th>
+                    <th>Nome</th>
                     <th>Telefone</th>
                     <th>CPF/CNPJ</th>
                 </tr>
@@ -39,8 +38,7 @@
             @foreach($registros as $registro)
             <tr style="cursor:pointer">
                 <td>{{$registro->id}}</td>
-                <td>{{$registro->pessoa->nome}}</td>
-                <td>{{$registro->pessoa->nomeSocial}}</td>
+                <td>{{$registro->pessoa->getNome()}}</td>
                 <td>{{$registro->numeroFormatadoComDDD()}}</td>
                 <td>{{$registro->pessoa->cpfCnpjFormatado()}}</td>
             </tr>
@@ -49,8 +47,7 @@
             <tfoot>
                 <tr>
                     <th>Id</th>
-                    <th>Nome/Razão Social</th>
-                    <th>Social/Fantasia</th>
+                    <th>Nome</th>
                     <th>Telefone</th>
                     <th>CPF/CNPJ</th>
                 </tr>

@@ -72,9 +72,6 @@
             </div><!-- /.card-body -->
 
             <div class="card-footer">
-                <nav aria-label="Contacts Page Navigation">
-                    {!! $registros->links() !!}
-                </nav>
             </div>
         </div><!-- /.card -->
     </div><!-- /.col-md-12 -->
@@ -200,7 +197,7 @@
 @section('js')
 <script>
 var table = $('#tabela').DataTable({
-        "paging": false,
+        "paging": true,
         "responsive": true,
         "processing": true,
         "lengthChange": true,
