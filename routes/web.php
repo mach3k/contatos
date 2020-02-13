@@ -2,6 +2,7 @@
 
 Route::get('/', 'Web\TelefoneController@index');
 Route::get('/home', 'Web\TelefoneController@index')->name('home');
+Route::get('/home/{id}', 'Web\TelefoneController@show');
 
 Route::resource('pessoa', 'Web\PessoaController');
 Route::any('pessoa-search', 'Web\PessoaController@search')->name('pessoa.search');

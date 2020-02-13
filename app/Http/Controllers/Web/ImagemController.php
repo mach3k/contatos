@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers\Web;
 
+use App\Exceptions\InvalidImageException;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Imagem;
+use App\Models\Pessoa;
+use Exception;
 
 class ImagemController extends Controller {
 
@@ -22,7 +25,7 @@ class ImagemController extends Controller {
 
         $title = 'Pessoas físicas';
         // $paises = Pais::all();
-        $estados = Estado::all();
+        $estados = Imagem::all();
 
         return view('pessoa.index',[
             'registros' => $registros,
@@ -34,7 +37,7 @@ class ImagemController extends Controller {
     }
 
     public function show($id) {
-        $registro = Pessoa::where('juridica', false)
+        $registro = Imagem::where('juridica', false)
         ->with('empregador')
         ->with('genero')
         ->with('enderecos')
@@ -65,17 +68,41 @@ class ImagemController extends Controller {
 
         try {
             $this->validate($request,[
-                'nome'=> 'required|max:200',
-                'estado_id' => 'required|numeric',
+                'pessoa_id'=> 'required|numeric',
             ]);
 
-            $registro = new Pessoa;
+            if (!($request->hasFile('imagem') && $request->file('imagem')->isValid()))
+                throw new InvalidImageException("Falha ao salvar a imagem", 1);
+
+            $nameFile = null;
+
+            $name = uniqid(date('HisYmd'));
+            $extension = $request->imagem->extension();
+            $nameFile = "{$name}.{$extension}";
+            $upload = $request->imagem->storeAs('categories', $nameFile);
+
+            dd($upload);
+
+            if ( !$upload )
+                return redirect()
+                            ->back()
+                            ->with('error', 'Falha ao fazer upload')
+                            ->withInput();
+
+            $registro = new Imagem;
             $this->salvar($request, $registro);
 
-            toastr()->success('Registro salvo com sucesso.', 'Feito!');
-        } catch (\Throwable $th) {
-            toastr()->error('Falha ao salvar o registro.', 'Ops!');
+            $pessoa = Pessoa::findOrFail($request->pessoa_id);
+
+            toastr()->success('Imagem salva com sucesso.', 'Feito!');
+        } catch (InvalidImageException $th) {
+            toastr()->error('Falha ao salvar a imagem:<br> Informe uma imagem válida', 'Ops!');
+        } catch (Exception $th) {
+            toastr()->error('Falha ao salvar a imagem.', 'Ops!');
         }
+
+        if ($request->has('pessoa_id'))
+            return redirect()->route('pessoa.show', $request->pessoa_id);
 
         return redirect()->route('pessoa.index');
     }
@@ -87,7 +114,7 @@ class ImagemController extends Controller {
                 'estado_id' => 'required|numeric',
             ]);
 
-            $registro = Pessoa::findOrFail($id);
+            $registro = Imagem::findOrFail($id);
             $this->salvar($request, $registro);
 
             toastr()->success('Registro alterado com sucesso.', 'Feito!');
@@ -98,7 +125,7 @@ class ImagemController extends Controller {
         return redirect()->route('pessoa.show', $id);
     }
 
-    protected function salvar(Request $request, Pessoa $registro){
+    protected function salvar(Request $request, Imagem $registro){
         $registro->fill($request->all());
         $registro->save();
     }
@@ -106,13 +133,11 @@ class ImagemController extends Controller {
     public function destroy($id) {
 
         try {
-            $registro = Pessoa::findOrFail($id);
+            $registro = Imagem::findOrFail($id);
             $registro->delete();
-            toastr()->success('Registro excluído com sucesso!', 'Feito!');
-            $arr = array('message' => 'Registro excluído com sucesso!', 'title' => 'Feito!');
-            echo json_encode($arr);
+            toastr()->success('Imagem excluída com sucesso!', 'Feito!');
         } catch (\Throwable $th) {
-            toastr()->error('Falha ao excluir o registro.', 'Ops!');
+            toastr()->error('Falha ao excluir imagem.', 'Ops!');
         }
 
         return redirect()->route('pessoa.index');

@@ -98,7 +98,13 @@ var table = $('#tabela').DataTable({
     });
 
 $('#tabela tbody').on( 'click', 'tr', function () {
-    window.location.assign(document.URL.concat('/', table.row( this ).data()[0]));
+    if (window.location.href.indexOf("telefone") > -1){
+        window.location.assign(document.URL.concat('/', table.row( this ).data()[0]));
+    } else if (window.location.href.indexOf("home") > -1) {
+        window.location.assign(document.URL.concat('/', table.row( this ).data()[0]));
+    } else {
+        window.location.assign(document.URL.concat('/telefone/', table.row( this ).data()[0]));
+    }
 } );
 </script>
 @endsection

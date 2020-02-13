@@ -548,19 +548,20 @@
     <div class="modal-dialog modal-default">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title"> Foto de Perfil</h4>
+                <h4 class="modal-title">Foto de Perfil</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
+
             <div class="modal-body">
-                <form enctype="multipart/form-data" role="form" action="{{route('imagem.store', $registro->id)}}" method="post" id="formEditar">
-                    <input name="_method" type="hidden" value="PATCH">
+                <form enctype="multipart/form-data" role="form" action="{{route('imagem.store', $registro->id)}}" method="post" id="formFoto">
                     {{csrf_field()}}
 
                     <div class="row">
                         <div class="col-sm-12">
                             <div class="form-group">
+                                <input type="hidden" name="pessoa_id" value="{{$registro->id}}"/>
                                 <input type="hidden" name="MAX_FILE_SIZE" value="99999999"/>
                                 <div><input name="imagem" type="file"/></div>
                             </div>
@@ -569,6 +570,7 @@
 
                 </form>
             </div>
+
             <div class="modal-footer justify-content-between">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
                 <button type="submit" form="formFoto" class="btn btn-primary">Salvar</button>

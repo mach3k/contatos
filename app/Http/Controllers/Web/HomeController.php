@@ -11,4 +11,8 @@ class HomeController extends Controller {
 
         return view('welcome');
     }
+
+    public function show($id) {
+        return redirect()->route('pessoa.show', $id);
+    }
 }
