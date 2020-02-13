@@ -131,7 +131,7 @@
 
                                             <div class="col-sm-3">
                                                 <div class="float-right">
-                                                    <button type="button" class="btn btn-sm btn-warning" data-toggle="modal" data-target="#modalEndereco"><i class="far fa-edit"></i> Editar</button>
+                                                    {{-- <button type="button" class="btn btn-sm btn-warning" data-toggle="modal" data-target="#modalEndereco"><i class="far fa-edit"></i> Editar</button> --}}
                                                     {{ method_field('DELETE') }}
                                                     <button onclick="deleteEndereco('{{$endereco->id}}', '{{$registro->id}}')" type="button" class="btn btn-sm btn-outline-danger"><i class="fas fa-exclamation-triangle"></i> Excluir</button>
                                                 </div>
@@ -189,7 +189,7 @@
                                             </div>
                                             <div class="col-sm-3">
                                                 <div class="float-right">
-                                                    <button type="button" class="btn btn-sm btn-warning" data-toggle="modal" data-target="#modalTelefone"><i class="far fa-fw fa-edit"></i> Editar</button>
+                                                    {{-- <button type="button" class="btn btn-sm btn-warning" data-toggle="modal" data-target="#modalTelefone"><i class="far fa-fw fa-edit"></i> Editar</button> --}}
                                                     {{ method_field('DELETE') }}
                                                     <button onclick="deleteTelefone('{{$telefone->id}}', '{{$registro->id}}')" type="button" class="btn btn-sm btn-outline-danger"><i class="fas fa-fw fa-exclamation-triangle"></i> Excluir</button>
                                                 </div>

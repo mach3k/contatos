@@ -70,9 +70,9 @@
                             @endisset
 
                         </div>
-                            <div class="col-5 text-center">
+                        <div class="col-5 text-center">
                             @isset($registro->foto)
-                            <img src="{{$registro->foto->getImagem()}}" alt="" class="img-circle img-fluid">
+                            <img class="img-circle img-fluid" src="{{ url("storage/pessoas/{$registro->foto->nome}") }}" alt="Photo">
                             @else
                             <img src="{{asset('storage/images/sem_foto.png')}}" alt="" class="img-circle img-fluid">
                             @endisset
