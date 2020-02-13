@@ -9,6 +9,7 @@ use App\Models\Genero;
 use App\Models\Operadora;
 use App\Models\TipoEndereco;
 use App\Models\TipoTelefone;
+use Illuminate\Support\Facades\Storage;
 
 class PessoaController extends Controller {
 
@@ -48,6 +49,8 @@ class PessoaController extends Controller {
         ->findOrFail($id);
 
         // dd($registro);
+        // $teste = Storage::get('$registro->foto->nome');
+        // dd($registro->foto);
 
         if($registro->juridica)
             return redirect()->route('empresa.show', $registro->id);

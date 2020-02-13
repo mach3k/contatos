@@ -38,8 +38,14 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-sm-4">
-                        <img class="img-fluid pad" src="{{asset('storage/images/sem_foto.png')}}" alt="Photo">
-                        <button type="button" class="btn btn-block btn-secondary btn-xs" data-toggle="modal" data-target="#modalFoto"><i class="fas fa-fw fa-camera"></i> Enviar foto</button>
+                        <div class="">
+                            @isset($registro->foto)
+                            <img class="img-fluid pad" src="{{ url("storage/pessoas/{$registro->foto->nome}") }}" alt="Photo">
+                            @else
+                            <img class="img-fluid pad" src="{{asset('storage/images/sem_foto.png')}}" alt="Photo">
+                            @endisset
+                            <button type="button" class="btn btn-block btn-secondary btn-xs" data-toggle="modal" data-target="#modalFoto"><i class="fas fa-fw fa-camera"></i> Enviar foto</button>
+                        </div>
                     </div>
 
                     <div class="col-sm-4">

@@ -66,6 +66,8 @@ class ImagemController extends Controller {
 
     public function store(Request $request) {
 
+        // dd($request);
+
         try {
             $this->validate($request,[
                 'pessoa_id'=> 'required|numeric',
@@ -74,25 +76,34 @@ class ImagemController extends Controller {
             if (!($request->hasFile('imagem') && $request->file('imagem')->isValid()))
                 throw new InvalidImageException("Falha ao salvar a imagem", 1);
 
-            $nameFile = null;
+            $nome = uniqid(date('HisYmd'));
+            $extensao = $request->imagem->extension();
+            $arquivo = "{$nome}.{$extensao}";
+            $upload = $request->imagem->storeAs('pessoas', $arquivo);
 
-            $name = uniqid(date('HisYmd'));
-            $extension = $request->imagem->extension();
-            $nameFile = "{$name}.{$extension}";
-            $upload = $request->imagem->storeAs('categories', $nameFile);
+            // dd($upload);
 
-            dd($upload);
-
-            if ( !$upload )
-                return redirect()
-                            ->back()
-                            ->with('error', 'Falha ao fazer upload')
-                            ->withInput();
+            // if ( !$upload )
+            //     return redirect()
+            //                 ->back()
+            //                 ->with('error', 'Falha ao fazer upload')
+            //                 ->withInput();
 
             $registro = new Imagem;
-            $this->salvar($request, $registro);
+            $registro->nome = $arquivo;
+            // $registro->descricao = $request->$;
+            $registro->extensao = $extensao;
+            $registro->caminho = $upload;
+            // $registro->tamanho = $request->$;
+
+            // dd($registro);
+
+            $registro->save();
 
             $pessoa = Pessoa::findOrFail($request->pessoa_id);
+            $pessoa->imagem_id = $registro->id;
+            // dd($pessoa);
+            $pessoa->save();
 
             toastr()->success('Imagem salva com sucesso.', 'Feito!');
         } catch (InvalidImageException $th) {

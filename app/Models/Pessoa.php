@@ -45,7 +45,7 @@ class Pessoa extends Model {
     // }
 
     public function foto() {
-        return $this->belongsTo('App\Models\Imagem');
+        return $this->belongsTo('App\Models\Imagem', 'imagem_id');
     }
 
     public function genero() {

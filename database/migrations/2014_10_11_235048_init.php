@@ -22,10 +22,11 @@ class Init extends Migration {
             $table->string('nome', 50);
             $table->string('descricao', 300)->nullable();
             $table->string('extensao', 5);
+            $table->string('mime', 20);
             $table->string('caminho', 500)->nullable();
-            $table->integer('tamanho')->unsigned();
+            $table->integer('tamanho')->unsigned()->nullable();
             $table->boolean('destaque')->default(0);
-            $table->binary('bits');
+            $table->binary('bits')->nullable();
             $table->timestamps();
         });
 
