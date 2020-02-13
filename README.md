@@ -49,12 +49,12 @@ Opcionalmente:
 - Servidor Web local. Por exemplo: <a href="https://www.apachefriends.org/pt_br/index.html">Xampp v7+</a> (Apache + PHP v7.2+ + MariaDB)
 
 Para executar:
-- Descompactar o conteúdo do arquivo de códigos na pasta do servidor web, se estiver usando um
-- Criar um banco de dados vazio no MariaDB, com o nome de "contatos"
-- Entrar pelo console na pasta do projeto
-- Executar o comando: composer install
-- Executar o comando: npm install
-- Executar o comando: "php artisan migrate --seed"
+- Descompacte o conteúdo do arquivo de códigos na pasta do servidor web, se estiver usando um
+- Crie um banco de dados vazio no MariaDB, com o nome de "contatos"
+- Entre pelo console na pasta do projeto
+- Execute o comando: composer install
+- Execute o comando: npm install
+- Execute o comando: "php artisan migrate --seed"
 - se não tiver um servidor web, execute o comando: php artisan serve
 - a aplicação estará disponível em http://127.0.0.1:8000
 - se estiver utilizando o servidor web, acesse com o navegador a pasta do projeto (http://localhost/.../contatos/public)
