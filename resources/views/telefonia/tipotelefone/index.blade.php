@@ -37,7 +37,7 @@
             <div class="card-body">
                 <table id="tabela" class="table table-bordered table-striped">
                     <thead>
-                        <tr style="cursor:pointer">
+                        <tr>
                             <th>Id</th>
                             <th>Nome</th>
                             <th>Descrição</th>

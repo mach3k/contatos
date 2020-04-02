@@ -36,6 +36,7 @@
             </div><!-- /.card-header -->
 
             <div class="card-body">
+                {{-- Dados do jagunço --}}
                 <div class="row">
                     <div class="col-sm-4">
                         <div class="">
@@ -66,10 +67,10 @@
                                 <dd>Não informado.</dd>
                             @endif
                         </dl>
-                        </div>
+                    </div>
 
-                        <div class="col-sm-4">
-                            <dl>
+                    <div class="col-sm-4">
+                        <dl>
                             <dt>Empresa</dt>
                             @if(isset($registro->empregador))
                                 <dd>{{$registro->empregador->nome}}</dd>
@@ -103,6 +104,7 @@
 
                 <hr>
 
+                {{-- Endereços --}}
                 <div class="row">
                     <div class="card col-sm-12">
                         <div class="card-header">
@@ -121,7 +123,11 @@
                                             <div class="col-sm-9">
                                                 <dl>
                                                     <dt>{{$endereco->tipo->nome}}</dt>
-                                                    <dd>{{$endereco->logradouro}}, {{$endereco->numero}}@isset($endereco->complemento) - {{$endereco->complemento}}@endisset @isset($endereco->bairro)- {{$endereco->bairro}} @endisset- {{$endereco->cidade->nome}} / {{$endereco->cidade->estado->sigla}}@isset($endereco->cep) - CEP {{$endereco->cepFormatado()}}@endisset</dd>
+                                                    <dd>{{$endereco->logradouro}}, {{$endereco->numero}}
+                                                        @isset($endereco->complemento) - {{$endereco->complemento}}@endisset
+                                                        @isset($endereco->bairro)- {{$endereco->bairro}}
+                                                        @endisset- {{$endereco->cidade->nome}} / {{$endereco->cidade->estado->sigla}}
+                                                        @isset($endereco->cep) - CEP {{$endereco->cepFormatado()}}@endisset</dd>
                                                     @isset($endereco->observacao)
                                                     <dt>Observação</dt>
                                                     <dd>{{$endereco->observacao}}</dd>
@@ -148,6 +154,7 @@
                     </div>
                 </div>
 
+                {{-- Telefones --}}
                 <div class="row">
                     <div class="card col-sm-12">
                         <div class="card-header">
@@ -315,11 +322,15 @@
                                 <select name="genero_id" id="genero_id" class="form-control select2 select2-hidden-accessible" style="width: 100%;" data-select2-id="2" aria-hidden="true">
                                     <option selected data-select2-id="" value="">Selecione o gênero..</option>
                                     @foreach($generos as $genero)
-                                    @if ($genero->id == $registro->genero->id)
-                                    <option selected data-select2-id="{{$genero->id}}" value="{{$genero->id}}">{{$genero->nome}}</option>
-                                    @else
-                                    <option data-select2-id="{{$genero->id}}" value="{{$genero->id}}">{{$genero->nome}}</option>
-                                    @endif
+                                        @isset($registro->genero->id)
+                                            @if ($genero->id == $registro->genero->id)
+                                            <option selected data-select2-id="{{$genero->id}}" value="{{$genero->id}}">{{$genero->nome}}</option>
+                                            @else
+                                            <option data-select2-id="{{$genero->id}}" value="{{$genero->id}}">{{$genero->nome}}</option>
+                                            @endif
+                                        @else
+                                        <option data-select2-id="{{$genero->id}}" value="{{$genero->id}}">{{$genero->nome}}</option>
+                                        @endisset
                                     @endforeach
                                 </select>
                             </div>

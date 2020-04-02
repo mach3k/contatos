@@ -11,9 +11,12 @@
         "php": "^7.2",
         "cagartner/correios-consulta": "0.1.*",
         "fideloper/proxy": "^4.0",
+        "guzzlehttp/guzzle": "^6.5",
+        "intervention/image": "^2.5",
         "jeroennoten/laravel-adminlte": "^3.0",
         "laravel/framework": "^6.2",
         "laravel/tinker": "^2.0",
+        "laravellegends/pt-br-validator": "6.*",
         "tjgazel/laravel-toastr": "^1.0"
     },
     "require-dev": {

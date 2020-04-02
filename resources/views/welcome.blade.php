@@ -84,6 +84,8 @@
                     Contatos
                 </div>
 
+                <Example />
+
                 <div class="links">
                 <a href="{{route('home')}}">Iniciar</a>
                     <a href="https://github.com/mach3k" target="_blank">Instruções</a>

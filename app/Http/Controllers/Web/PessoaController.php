@@ -9,6 +9,7 @@ use App\Models\Genero;
 use App\Models\Operadora;
 use App\Models\TipoEndereco;
 use App\Models\TipoTelefone;
+use App\User;
 use Illuminate\Support\Facades\Storage;
 
 class PessoaController extends Controller {
@@ -43,6 +44,9 @@ class PessoaController extends Controller {
         $registro = Pessoa::with('empregador')
         ->with('genero')
         ->with('enderecos')
+        // ->with('enderecos.cidade')
+        // ->with('enderecos.cidade.estado')
+        // ->with('enderecos.cidade.estado.pais')
         ->with('telefones')
         ->with('telefones.tipo')
         ->with('foto')
@@ -57,19 +61,30 @@ class PessoaController extends Controller {
 
         $title = 'Detalhes do Contato';
 
-        $empresas = Pessoa::where('juridica', true)->get();
-        $generos = Genero::all();
-        $tipos = TipoTelefone::all();
-        $tiposEnd = TipoEndereco::all();
-        $operadoras = Operadora::all();
+        // $empresas = Pessoa::where('juridica', true)->get();
+        // $generos = Genero::all();
+        // $tipos = TipoTelefone::all();
+        // $tiposEnd = TipoEndereco::all();
+        // $operadoras = Operadora::all();
 
-        return view('pessoa.show',[
-            'registro' => $registro,
-            'tipos' => $tipos,
-            'tiposEnd' => $tiposEnd,
-            'operadoras' => $operadoras,
-            'generos' => $generos,
-            'empresas' => $empresas
+        // dd($registro);
+        // // dd(json_encode($registro));
+
+        // return view('pessoa.show',[
+        //     'registro' => $registro,
+        //     'tipos' => $tipos,
+        //     'tiposEnd' => $tiposEnd,
+        //     'operadoras' => $operadoras,
+        //     'generos' => $generos,
+        //     'empresas' => $empresas
+        // ])
+        // ->withTitle($title)
+        // ->with('titleModal', $this->titleModal);
+
+        // $registro = Operadora::findOrFail(1);
+
+        return view('pessoa.show2',[
+            'registro' => $registro
         ])
         ->withTitle($title)
         ->with('titleModal', $this->titleModal);
@@ -90,6 +105,7 @@ class PessoaController extends Controller {
                 'nome'=> 'required|max:200',
                 'dataNascimento' => 'required',
                 'rg_ie' => 'required|max:20',
+                'cpf_cnpj' => 'cpf',
             ]);
 
             $registro = new Pessoa;
@@ -97,6 +113,7 @@ class PessoaController extends Controller {
 
             toastr()->success('Registro salvo com sucesso.', 'Feito!');
         } catch (\Throwable $th) {
+            // dd($th);
             toastr()->error('Falha ao salvar o registro.', 'Ops!');
         }
 

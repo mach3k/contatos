@@ -4,7 +4,7 @@
  * building robust, powerful web applications using React + Laravel.
  */
 
-require('./bootstrap');
+// require('./bootstrap');
 
 /**
  * Next, we will create a fresh React component instance and attach it to
@@ -13,7 +13,8 @@ require('./bootstrap');
  */
 
 require('./components/Example');
-require('./components/NovaEmpresa');
+// require('./components/NovaEmpresa');
+require('./components/pessoa/show/pessoacard');
 
 
 // require('./components/configindex.js');

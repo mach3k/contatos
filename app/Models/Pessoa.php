@@ -121,4 +121,8 @@ class Pessoa extends Model {
 
         return $this->cpfFormatado();
     }
+
+    public function dataNascFormatada(){
+        return \Carbon\Carbon::parse($this->dataNascimento)->format('d/m/Y');
+    }
 }

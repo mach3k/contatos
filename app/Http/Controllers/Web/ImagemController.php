@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers\Web;
 
-use App\Exceptions\InvalidImageException;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Imagem;
 use App\Models\Pessoa;
 use Exception;
+use App\Exceptions\InvalidImageException;
+use Intervention\Image\ImageManager;
 
 class ImagemController extends Controller {
 
@@ -80,6 +81,9 @@ class ImagemController extends Controller {
             $extensao = $request->imagem->extension();
             $arquivo = "{$nome}.{$extensao}";
             $upload = $request->imagem->storeAs('pessoas', $arquivo);
+
+            // $manager = new ImageManager;
+            // $imagem = $manager->make('public/foo.jpg')->resizeCanvas(300, 300, 'center', false, '000000');
 
             // dd($upload);
 

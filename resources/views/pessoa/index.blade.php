@@ -69,7 +69,30 @@
                             <p class="text-muted text-sm"><b>À serviço de: </b><br/> {{$registro->empregador->getNome()}} </p>
                             @endisset
 
+                            <ul class="ml-4 mb-0 fa-ul text-muted">
+
+                                <li class="small">
+                                    <span class="fa-li">
+                                    <i class="fas fa-sm fa-map-marker-alt"></i> </span>
+                                    @isset($registro->endereco->logradouro)
+                                    {{$registro->endereco->logradouro}}, {{$registro->endereco->numero}} - {{$registro->endereco->cidade->nome}} / {{$registro->endereco->cidade->estado->sigla}}
+                                    @else
+                                    Não informado
+                                    @endisset
+                                </li>
+
+                                <li class="small">
+                                    <span class="fa-li"><i class="fas fa-sm fa-phone"></i> </span>
+                                    @isset($registro->telefone)
+                                    ({{$registro->telefone->ddd}}) {{$registro->telefone->numeroFormatado()}}
+                                    @else
+                                    Não informado
+                                    @endisset
+                                </li>
+
+                            </ul>
                         </div>
+
                         <div class="col-5 text-center">
                             @isset($registro->foto)
                             <img class="img-circle img-fluid" src="{{ url("storage/pessoas/{$registro->foto->nome}") }}" alt="Photo">
@@ -77,31 +100,6 @@
                             <img src="{{asset('storage/images/sem_foto.png')}}" alt="" class="img-circle img-fluid">
                             @endisset
                         </div>
-                    </div>
-
-                    <div class="row">
-                        <ul class="ml-4 mb-0 fa-ul text-muted">
-
-                            <li class="small">
-                                <span class="fa-li">
-                                <i class="fas fa-sm fa-map-marker-alt"></i> </span>
-                                @isset($registro->endereco->logradouro)
-                                {{$registro->endereco->logradouro}}, {{$registro->endereco->numero}} - {{$registro->endereco->cidade->nome}} / {{$registro->endereco->cidade->estado->sigla}}
-                                @else
-                                Não informado
-                                @endisset
-                            </li>
-
-                            <li class="small">
-                                <span class="fa-li"><i class="fas fa-sm fa-phone"></i> </span>
-                                @isset($registro->telefone)
-                                ({{$registro->telefone->ddd}}) {{$registro->telefone->numeroFormatado()}}
-                                @else
-                                Não informado
-                                @endisset
-                            </li>
-
-                        </ul>
                     </div>
                 </div>
 
@@ -244,10 +242,23 @@
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
+
+@if(Session::has('error'))
+    <div class="grid-x grid-padding-x grid-padding-y">
+        <div class="medium-12 cell">
+            <div class="alert callout">
+                {{Session::get('error')}}
+            </div>
+        </div>
+    </div>
+@endif
+
 @endsection
 
 @section('js')
 <script>
+toastr.success('Have fun storming the castle!', 'Miracle Max Says');
+
 var table = $('#tabela').DataTable({
         "paging": true,
         "responsive": true,

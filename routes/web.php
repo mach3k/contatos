@@ -22,3 +22,10 @@ Route::resource('pais', 'Web\PaisController');
 Route::resource('imagem', 'Web\ImagemController');
 // Route::resource('email', 'Web\EmailController');
 // Route::resource('tipoemail', 'Web\TipoEmailController');
+
+Route::get('login/facebook', 'Auth\LoginController@redirectToProvider');
+Route::get('login/facebook/callback', 'Auth\LoginController@handleProviderCallback');
+
+Route::get('teste', function () {
+    return view('pessoa.cadastro.index');
+});

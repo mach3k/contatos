@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 
 class Pessoa extends Component {
 
-
-
     render() {
         return (
             <div className="col-12 col-sm-6 col-md-4 d-flex align-items-stretch">

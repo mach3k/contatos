@@ -6,7 +6,7 @@ class PessoasList extends Component {
         return (
             <div className="card-body pb-0">
                 <div className="row d-flex align-items-stretch">
-                    {this.props.pessoas.map((pessoa) => {
+                    {this.props.registros.map((pessoa) => {
                         return <Pessoa pessoa={pessoa} key={pessoa.id} />
                     })}
                 </div>

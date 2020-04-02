@@ -52,7 +52,7 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'http://localhost'),
+    'url' => env('APP_URL', 'http://localhost/royalcargo/contatos/public'),
 
     'asset_url' => env('ASSET_URL', null),
 
@@ -175,6 +175,9 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         'Cagartner\CorreiosConsulta\ServiceProvider',
+        // \SocialiteProviders\Manager\ServiceProvider::class,
+        TJGazel\Toastr\ToastrServiceProvider::class,
+        Intervention\Image\ImageServiceProvider::class,
     ],
 
     /*
@@ -226,7 +229,8 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Correios' => 'Cagartner\CorreiosConsulta\Facade',
-
+        'Toastr' => TJGazel\Toastr\Facades\Toastr::class,
+        'Image' => Intervention\Image\Facades\Image::class,
     ],
 
 ];

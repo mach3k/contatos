@@ -12,7 +12,7 @@
     "devDependencies": {
         "@babel/preset-react": "^7.0.0",
         "axios": "^0.19",
-        "bootstrap": "^4.0.0",
+        "bootstrap": "^4.4.1",
         "cross-env": "^5.1",
         "jquery": "^3.2",
         "laravel-mix": "^5.0.1",
@@ -24,5 +24,14 @@
         "sass": "^1.15.2",
         "sass-loader": "^8.0.0",
         "toastr": "^2.1.4"
+    },
+    "dependencies": {
+        "date-fns": "^2.11.0",
+        "date-fns-tz": "^1.0.10",
+        "react-bootstrap": "^1.0.0-beta.17",
+        "react-select": "^3.0.8",
+        "react-select2": "^4.0.3",
+        "react-select2-wrapper": "^1.0.4-beta6",
+        "select2": "^4.0.13"
     }
 }
