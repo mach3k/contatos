@@ -165,7 +165,7 @@ class ModalTelefone extends Component {
                 } else {
                     this.props.saveModalDetails(response.data);
                 }
-                 
+
             }catch(error){
                 console.log(error);
             }
@@ -227,7 +227,7 @@ class ModalTelefone extends Component {
                                     <div className="form-group">
                                         <label htmlFor="tipo_telefone_id">Tipo</label>
                                         <Select
-                                            className="basic-single"
+                                            className="basic-multi-select"
                                             classNamePrefix="select"
                                             value={this.state.tipoTelefoneSel}
                                             styles={customStyles}
@@ -237,10 +237,11 @@ class ModalTelefone extends Component {
                                             name="tipo_telefone_id"
                                             options={this.state.tiposTelefone}
                                             onChange={this.tipoTelefoneHandler}
+                                            isMulti
                                         />
                                     </div>
                                 </div>
-                                
+
                                 <div className="col-sm-6" data-select2-id="2">
                                     <div className="form-group">
                                         <label htmlFor="operadora_id">Operadora</label>
@@ -273,7 +274,7 @@ class ModalTelefone extends Component {
 
                         <div className="modal-footer justify-content-between">
                             <button type="button" className="btn btn-default" data-dismiss="modal">Fechar</button>
-                            <button type="button" className="btn btn-outline-primary" data-dismiss="modal" 
+                            <button type="button" className="btn btn-outline-primary" data-dismiss="modal"
                             onClick={() => { this.handleSave() }} id="salvarTelefone">Salvar</button>
                             <button type="button" className="btn btn-primary" onClick={() => { this.handleClick() }} id="verState">Ver State</button>
                         </div>
