@@ -43,7 +43,7 @@
                             @isset($registro->foto)
                             <img class="img-fluid pad" src="{{ url("storage/pessoas/{$registro->foto->nome}") }}" alt="Photo">
                             @else
-                            <img class="img-fluid pad" src="{{asset('storage/images/sem_foto.png')}}" alt="Photo">
+                            <img class="img-fluid pad" src="{{asset('storage/sem_foto.png')}}" alt="Photo">
                             @endisset
                             <button type="button" class="btn btn-block btn-secondary btn-xs" data-toggle="modal" data-target="#modalFoto"><i class="fas fa-fw fa-camera"></i> Enviar foto</button>
                         </div>

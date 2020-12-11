@@ -108,6 +108,7 @@
                         <a href="{{route('pessoa.show', $registro->id)}}" class="btn btn-sm btn-primary">
                         <i class="fas fa-user"></i> Ver Perfil
                         </a>
+                        <button id="poppeador" aria-describedby="tooltip">I'm a button</button>
                     </div>
                 </div>
             </div>
@@ -301,6 +302,13 @@ $(document).on('shown.bs.modal', function (e) {
 
 $(document).ready(function() {
     $('.select2').select2()
+    $('#poppeador');
+
+  // Pass the button, the tooltip, and some options, and Popper will do the
+  // magic positioning for you:
+  Popper.createPopper(button, {
+    placement: 'right',
+  });
 });
 
 $('#tabela tbody').on( 'click', 'tr', function () {
@@ -315,6 +323,7 @@ input.on("keyup", function(event) {
         $("#btnSearch").click();
     }
 });
+
 
 </script>
 @endsection

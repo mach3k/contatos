@@ -62,6 +62,8 @@
                 margin-bottom: 30px;
             }
         </style>
+
+        {{-- {!! htmlScriptTagJsApi() !!} --}}
     </head>
     <body>
         <div class="flex-center position-ref full-height">
@@ -90,7 +92,11 @@
                 <a href="{{route('home')}}">Iniciar</a>
                     <a href="https://github.com/mach3k" target="_blank">Instruções</a>
                 </div>
+
+                <hr/>
+                <div id="recaptchulinha"></div>
             </div>
         </div>
+        <script src="{{ asset('js/app.js') }}"></script>
     </body>
 </html>

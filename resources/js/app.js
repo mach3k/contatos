@@ -12,9 +12,10 @@
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-require('./components/Example');
+// require('./components/Example');
 // require('./components/NovaEmpresa');
-require('./components/pessoa/show/pessoacard');
+// require('./components/pessoa/show/pessoacardImage');
 
+require('./components/recaptcha');
 
 // require('./components/configindex.js');

@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 import Select from 'react-select';
 import axios from 'axios';
+import { ToastContainer } from "react-toastr";
 
 const customStyles = {
     width: '100%'
 }
+
+let container;
 
 class ModalTelefone extends Component {
     constructor(props) {
@@ -63,7 +66,7 @@ class ModalTelefone extends Component {
     }
 
     componentDidMount(){
-        console.log('entrou no didmount');
+        // console.log('entrou no didmount');
         this.getTiposTelefone();
         this.getOperadoras();
     }
@@ -181,11 +184,25 @@ class ModalTelefone extends Component {
         console.log(this.state.tipoTelefoneSel);
         console.log(this.state.operadoras);
         console.log(this.state.tiposTelefone);
+
+        container.success(`hi! Now is ${new Date()}`, `///title\\\\\\`, {
+            closeButton: true,
+            timeOut: 3000,
+            extendedTimeOut: 10000
+          });
     }
 
     render() {
 
         return (
+
+            <>
+            
+            <ToastContainer
+                ref={ref => container = ref}
+                className="toast-top-right"
+            />
+            
             <div className="modal fade" id={this.props.id} tabIndex="-1" role="dialog" aria-labelledby="modalTelefoneLabel" aria-hidden="true">
                 <div className="modal-dialog modal-default" role="document">
                     <div className="modal-content">
@@ -281,6 +298,7 @@ class ModalTelefone extends Component {
                     </div>
                 </div>
             </div>
+            </>
         );
     }
 }

@@ -42,6 +42,7 @@
 @endif
 <script src="{{ asset('js/app.js') }}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js"></script>
+<script src="https://unpkg.com/@popperjs/core@2"></script>
 {!! toastr()->render() !!}
 
 </body>

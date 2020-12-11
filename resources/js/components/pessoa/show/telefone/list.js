@@ -1,6 +1,19 @@
-import React, { Component } from 'react';
-import ModalTelefone from './modal';
+import React, { Component, useState } from 'react';
+// import ModalTelefone from './modal';
+// import ModalTelefone from '../teste/reacthookform';
+import ModalTelefone from '../teste/rbs-modal';
 import axios from 'axios';
+// import { useHistory } from "react-router-dom";
+// import { Redirect } from 'react-router'
+
+import { ToastContainer, toast } from 'react-toastify';
+// import 'react-toastify/dist/ReactToastify.css';
+
+import SweetAlert from 'sweetalert2-react';
+
+// import DatePicker from "react-datepicker";
+// import "react-datepicker/dist/react-datepicker.css";
+
 
 class Telefones extends Component {
     constructor(props) {
@@ -11,18 +24,43 @@ class Telefones extends Component {
             baseUrl: props.baseUrl,
             naoInformado: 'Não informado',
             registros: [],
-            requiredItem: 0,
-
+            requiredItem: null,
+            show: false,
+            startDate: new Date()
         }
 
         this.replaceModalItem = this.replaceModalItem.bind(this);
         this.saveModalDetails = this.saveModalDetails.bind(this);
         this.updateListItem = this.updateListItem.bind(this);
         this.telefoneFormatado = this.telefoneFormatado.bind(this);
+        this.redireciona = this.redireciona.bind(this);
+        this.toast = this.toast.bind(this);
+        this.handleClose = this.handleClose.bind(this);
+        this.handleShow = this.handleShow.bind(this);
+        this.handleChange = this.handleChange.bind(this);
+        
+        // const [show, setShow] = useState(false);
+
+        // const handleClose = () => setShow(false);
+        // const handleShow = () => setShow(true);
+    }
+
+    handleChange(date) {
+      this.setState({
+        startDate: date
+      });
+    };
+
+    handleClose(){
+        this.setState({show: false});
+    }
+
+    handleShow(){
+        this.setState({show: true});
     }
 
     componentDidMount() {
-        console.log(`${this.state.baseUrl}/api/pessoa/${this.state.idPessoa}/telefones`);
+        // console.log(`${this.state.baseUrl}/api/pessoa/${this.state.idPessoa}/telefones`);
         axios.get(`${this.state.baseUrl}/api/pessoa/${this.state.idPessoa}/telefones`)
         .then(response => {
             this.setState({ registros : response.data });
@@ -31,33 +69,34 @@ class Telefones extends Component {
             console.log('deu merda');
         });
 
-        console.log(this.state.registros);
+        // console.log(this.state.registros);
     }
 
     replaceModalItem(index) {
         // console.log('Item do list: ');
-        console.log(index);
+        // console.log(index);
         
         this.setState({
             requiredItem: index
         });
 
-        console.log('replaceModalItem: requiredItem ');
-        console.log(this.state.requiredItem);
+        console.log('replaceModalItem: requiredItem ', this.state.requiredItem);
+        // console.log(this.state.requiredItem);
 
         // this.props.replaceModalItem(item);
+        this.handleShow();
     }
 
     saveModalDetails(item) {
 
-        console.log('saveModalDetails: ');
-        console.log(item);
+        // console.log('saveModalDetails: ');
+        // console.log(item);
 
             this.setState(
                 { registros: [...this.state.registros, item] }
             );
 
-        console.log('acabou o saveModalDetails');
+        // console.log('acabou o saveModalDetails');
     }
 
     updateListItem(item){
@@ -118,6 +157,20 @@ class Telefones extends Component {
         });
     }
 
+    redireciona(){
+
+        console.log('entrou em sapoha');
+        window.location = "https://www.google.com.br/";
+        // let path = `https://www.google.com.br/`; 
+        // let history = useHistory();
+        // history.push(path);
+    }
+
+    toast(){
+        console.log('manda ver');
+        toast.success("Testando...");
+    }
+
     render() {
         const lista = this.state.registros.map((item, index) => {
             return (
@@ -155,7 +208,6 @@ class Telefones extends Component {
                             <div className="float-right">
                                 <div className="row">
                                     <button type="button" className="btn btn-xs btn-block btn-outline-warning m-1"
-                                    data-toggle="modal" data-target="#modalTelefone"
                                     onClick={() => this.replaceModalItem(index)}><i className="far fa-edit"></i> Editar</button>
                                 </div>
                                 <div className="row">
@@ -165,7 +217,48 @@ class Telefones extends Component {
                             </div>
                         </div>
                     </div>
+                    <div className="row">
+                        <button onClick={() => this.redireciona()} type="button"
+                        className="btn btn-xs btn-block btn-outline-danger m-1"><i className="fas fa-exclamation-triangle"></i> Google</button>
+                    </div>
+                    <div className="row">
+                        <button onClick={() => this.toast()} type="button"
+                        className="btn btn-xs btn-block btn-outline-primary m-1"> Toast the bagaça</button>
+                    </div>
+                    <div className="form-group">
+                        <label>Date Picker:</label>
+
+                        <div className="input-group">
+                            <div className="input-group-prepend">
+                                <span className="input-group-text">
+                                    <i className="far fa-calendar-alt"></i>
+                                </span>
+                            </div>
+                            {/* <DatePicker
+                                selected={this.state.startDate}
+                                onChange={this.handleChange}
+                                className="form-control float-right"
+                            /> */}
+                        </div>
+                    </div>
+                                        
+                    <div className="row">
+                        <button onClick={() => this.setState({ askDelete: true })}>Alert</button>
+                        <SweetAlert
+                            show={this.state.askDelete}
+                            type= "warning"
+                            title="Você tem certeza?"
+                            text="Depois de excluir, você não pode mais recuperar este registro!"
+                            confirmButtonText= 'Excluir'
+                            confirmButtonColor= 'red'
+                            showCancelButton
+                            cancelButtonText= 'Cancelar'
+                            reverseButtons
+                            onConfirm={() => this.setState({ askDelete: false })}
+                        />
+                    </div>
                     {index != this.state.registros.length-1 ? <hr /> : ''}
+                    <ToastContainer />
                 </div>
             )
         });
@@ -174,7 +267,9 @@ class Telefones extends Component {
         const requiredItem = this.state.requiredItem;
         // console.log("requiredItem: " + requiredItem);
         // console.log("Endereco 1: " + this.state.telefones[1] != null ? this.state.telefones[1].logradouro : 'não definido');
-        let modalData = requiredItem != null ? this.state.registros[requiredItem] : null;
+        let modalData = requiredItem !== null && requiredItem !== undefined ? this.state.registros[requiredItem] : null;
+        // console.log('this.state.requiredItem: ' + `${this.state.requiredItem}`);
+        // console.log('requiredItem: ' + `${requiredItem}`);
         // console.log('modalData: ' + `${modalData}`);
         // let tipo = modalData ? modalData.tipo.nome : null;
         // let tipo = modalData ? modalData.cidade.estado.pais_id : null;
@@ -193,7 +288,8 @@ class Telefones extends Component {
 
                         <div className="float-right col-sm-3">
                             <button type="button" className="btn btn-xs btn-block btn-outline-primary"
-                            data-toggle="modal" data-target="#modalNovoTelefone"
+                            data-toggle="modal" data-target="#modalTelefone"
+                            // onClick={() => this.replaceModalItem(null)}><i className="fas fa-fw fa-plus" /> Adicionar</button>
                             onClick={() => this.replaceModalItem(null)}><i className="fas fa-fw fa-plus" /> Adicionar</button>
                         </div>
 
@@ -203,9 +299,9 @@ class Telefones extends Component {
                         <div className="card-body">
 
                             <div className="row">
-                                {console.log(lista ? lista.length : 'lista vazia')}
-                                {lista ? lista : <p>Esta pessoa não possui telefones cadastrados</p>}
-                                <ModalTelefone
+                                {/* {console.log(lista ? lista.length : 'lista vazia')} */}
+                                {lista.length ? lista : <p>Esta pessoa não possui telefones cadastrados</p>}
+                                {/* <ModalTelefone
                                     id="modalTelefone"
                                     pessoa_id={this.state.idPessoa}
                                     baseUrl={this.state.baseUrl}
@@ -213,7 +309,7 @@ class Telefones extends Component {
                                     registro={modalData}
                                     updateListItem={this.updateListItem}
                                     saveModalDetails={this.saveModalDetails}
-                                />
+                                /> */}
                             </div>
 
                         </div>
@@ -222,13 +318,24 @@ class Telefones extends Component {
                 </div>
 
                 <ModalTelefone
-                    id="modalNovoTelefone"
+                    show={this.state.show}
+                    handleClose={this.handleClose}
+                    baseUrl={this.state.baseUrl}
+                    pessoa_id={this.state.idPessoa}
+                    registro={modalData}
+                    saveModalDetails={this.saveModalDetails}
+                    updateListItem={this.updateListItem}
+                />
+
+                {/* <ModalTelefone
+                    id="modalTelefone"
                     pessoa_id={this.state.idPessoa}
                     baseUrl={this.state.baseUrl}
                     // registro={modalData ? modalData : null}
-                    registro={null}
+                    registro={modalData}
+                    updateListItem={this.updateListItem}
                     saveModalDetails={this.saveModalDetails}
-                />
+                /> */}
 
             </div>
         );

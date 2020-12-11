@@ -28,6 +28,10 @@ class PessoaCard extends Component {
         this.cpfFormatado = this.cpfFormatado.bind(this);
     }
 
+    componentDidMount() {
+        // console.log(this.state.pessoa);
+    }
+
     // showModal = () => {
     //   this.setState({ show: true });
     // };
@@ -78,11 +82,12 @@ class PessoaCard extends Component {
                         <div>
                             <div className="row">
                                 <div className="col-sm-4">
-                                {typeof this.state.pessoa.foto !== 'undefined' ?
-                                    <img className="img-fluid pad" src={this.state.baseUrl + '/storage/pessoas/' + this.state.pessoa.foto.nome} alt="Photo"/>
+                                {/* {typeof this.state.pessoa.foto !== 'undefined' ?
+                                    // <img className="img-fluid pad" src={this.state.baseUrl + '/storage/pessoas/' + this.state.pessoa.foto.nome} alt="Photo"/>
+                                    <img className="img-fluid pad" src={this.state.baseUrl + '/storage/images/sem_foto.png'} alt="Photo" />
                                     :
                                     <img className="img-fluid pad" src={this.state.baseUrl + '/storage/images/sem_foto.png'} alt="Photo" />
-                                }
+                                } */}
                                     <button type="button" className="btn btn-block btn-secondary btn-xs" data-toggle="modal" data-target="#modalFoto"><i className="fas fa-fw fa-camera" /> Enviar foto</button>
                                 </div>
 

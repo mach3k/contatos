@@ -9,6 +9,7 @@
     "license": "MIT",
     "require": {
         "php": "^7.2",
+        "biscolab/laravel-recaptcha": "^4.1",
         "cagartner/correios-consulta": "0.1.*",
         "fideloper/proxy": "^4.0",
         "guzzlehttp/guzzle": "^6.5",

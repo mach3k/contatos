@@ -12,13 +12,13 @@
     "devDependencies": {
         "@babel/preset-react": "^7.0.0",
         "axios": "^0.19",
-        "bootstrap": "^4.4.1",
+        "bootstrap": "^4.5.0",
         "cross-env": "^5.1",
-        "jquery": "^3.2",
+        "jquery": "^3.5.1",
         "laravel-mix": "^5.0.1",
-        "lodash": "^4.17.13",
+        "lodash": "^4.17.19",
         "popper.js": "^1.12",
-        "react": "^16.2.0",
+        "react": "^16.13.1",
         "react-dom": "^16.2.0",
         "resolve-url-loader": "^2.3.1",
         "sass": "^1.15.2",
@@ -26,12 +26,28 @@
         "toastr": "^2.1.4"
     },
     "dependencies": {
+        "@popperjs/core": "^2.4.4",
+        "antd": "^4.3.5",
         "date-fns": "^2.11.0",
         "date-fns-tz": "^1.0.10",
-        "react-bootstrap": "^1.0.0-beta.17",
+        "formik": "^2.1.4",
+        "prop-types": "^15.7.2",
+        "react-bootstrap": "^1.0.1",
+        "react-datepicker": "^3.0.0",
+        "react-google-recaptcha": "^2.1.0",
+        "react-hook-form": "^5.7.2",
+        "react-hook-form-input": "^1.1.10",
+        "react-modal-image": "^2.5.0",
+        "react-modal-image-fragment": "^2.5.0",
+        "react-router-dom": "^5.2.0",
         "react-select": "^3.0.8",
         "react-select2": "^4.0.3",
         "react-select2-wrapper": "^1.0.4-beta6",
-        "select2": "^4.0.13"
+        "react-toastify": "^6.0.5",
+        "react-toastr": "^3.0.0",
+        "select2": "^4.0.13",
+        "styled-components": "^5.1.1",
+        "sweetalert2-react": "^0.8.3",
+        "yup": "^0.29.1"
     }
 }

@@ -22,7 +22,7 @@ class Enderecos extends Component {
     }
 
     componentDidMount() {
-        console.log(`${this.state.baseUrl}/api/pessoa/${this.state.idPessoa}/enderecos`);
+        // console.log(`${this.state.baseUrl}/api/pessoa/${this.state.idPessoa}/enderecos`);
         axios.get(`${this.state.baseUrl}/api/pessoa/${this.state.idPessoa}/enderecos`)
         .then(response => {
             this.setState({ enderecos : response.data });
@@ -31,19 +31,19 @@ class Enderecos extends Component {
             console.log('deu merda');
         });
 
-        console.log(this.state.enderecos);
+        // console.log(this.state.enderecos);
     }
 
     replaceModalItem(index) {
         // console.log('Item do list: ');
-        console.log(index);
+        // console.log(index);
         
         this.setState({
             requiredItem: index
         });
 
-        console.log('replaceModalItem: requiredItem ');
-        console.log(this.state.requiredItem);
+        // console.log('replaceModalItem: requiredItem ');
+        // console.log(this.state.requiredItem);
 
         // this.props.replaceModalItem(item);
     }
@@ -63,8 +63,8 @@ class Enderecos extends Component {
 
             // console.log("Bateu no salvar...");
             // console.log(response.data);
-        console.log('saveModalDetails: ');
-        console.log(item);
+        // console.log('saveModalDetails: ');
+        // console.log(item);
 
             this.setState(
                 { enderecos: [...this.state.enderecos, item] }
@@ -77,31 +77,31 @@ class Enderecos extends Component {
         // .catch(error => {
         //     console.log('deu merda ao salvar');
         // });
-        console.log('acabou o saveModalDetails');
+        // console.log('acabou o saveModalDetails');
     }
 
     updateListItem(item){
-        console.log('UpdateListeItem: ');
-        console.log(item);
+        // console.log('UpdateListeItem: ');
+        // console.log(item);
 
-        console.log('updateListItem: requiredItem ');
-        console.log(this.state.requiredItem ? this.state.requiredItem : 'null');
+        // console.log('updateListItem: requiredItem ');
+        // console.log(this.state.requiredItem ? this.state.requiredItem : 'null');
 
         const requiredItem = this.state.requiredItem;
-        console.log('requiredItem: ');
-        console.log(requiredItem);
+        // console.log('requiredItem: ');
+        // console.log(requiredItem);
 
         let tempRegistros = this.state.enderecos;
-        console.log('tempRegistros: ');
-        console.log(tempRegistros);
+        // console.log('tempRegistros: ');
+        // console.log(tempRegistros);
 
         tempRegistros[requiredItem] = item;
-        console.log('tempRegistros[requiredItem]: ');
-        console.log(tempRegistros[requiredItem]);
+        // console.log('tempRegistros[requiredItem]: ');
+        // console.log(tempRegistros[requiredItem]);
 
         this.setState({ enderecos: tempRegistros });
 
-        console.log('acabou o UpdateListeItem');
+        // console.log('acabou o UpdateListeItem');
     }
 
     deleteItem(index) {
@@ -208,7 +208,7 @@ class Enderecos extends Component {
                         <div className="card-body">
 
                             <div className="row">
-                                {console.log(lista.length)}
+                                {/* {console.log(lista.length)} */}
                                 {lista.length ? lista : <p>Esta pessoa não possui endereços cadastrados</p>}
                                 <ModalEndereco
                                     id="modalEndereco"

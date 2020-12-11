@@ -97,7 +97,7 @@ class ModalEndereco extends Component {
     }
 
     componentDidMount(){
-        console.log('entrou no didmount');
+        // console.log('entrou no didmount');
         this.getTiposEndereco();
         this.getPaises();
     }
@@ -365,14 +365,14 @@ class ModalEndereco extends Component {
             pais_id: this.state.paisSel ? this.state.paisSel.value : null,
         };
 
-        console.log('Item do modal: ');
-        console.log(item);
+        // console.log('Item do modal: ');
+        // console.log(item);
 
         axios.post(`${this.state.baseUrl}/api/endereco`, item)
         .then(response => {
 
-            console.log("Retorno do salvar...");
-            console.log(response.data);
+            // console.log("Retorno do salvar...");
+            // console.log(response.data);
 
             try{
                 if(item.id) {

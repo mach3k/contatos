@@ -231,6 +231,7 @@ return [
         'Correios' => 'Cagartner\CorreiosConsulta\Facade',
         'Toastr' => TJGazel\Toastr\Facades\Toastr::class,
         'Image' => Intervention\Image\Facades\Image::class,
+        'ReCaptcha' => Biscolab\ReCaptcha\Facades\ReCaptcha::class,
     ],
 
 ];

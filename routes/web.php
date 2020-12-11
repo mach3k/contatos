@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\Endereco;
+
 Route::get('/', 'Web\TelefoneController@index');
 Route::get('/home', 'Web\TelefoneController@index')->name('home');
 Route::get('/home/{id}', 'Web\TelefoneController@show');
@@ -27,5 +29,8 @@ Route::get('login/facebook', 'Auth\LoginController@redirectToProvider');
 Route::get('login/facebook/callback', 'Auth\LoginController@handleProviderCallback');
 
 Route::get('teste', function () {
-    return view('pessoa.cadastro.index');
+    return view('welcome');
+    // return Endereco::getCep('88343714');
 });
+
+Route::post('testando', 'TesteController@testando')->name('testando');
