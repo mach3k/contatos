@@ -12,7 +12,7 @@
         "biscolab/laravel-recaptcha": "^4.1",
         "cagartner/correios-consulta": "0.1.*",
         "fideloper/proxy": "^4.0",
-        "guzzlehttp/guzzle": "^6.5",
+        "guzzlehttp/guzzle": "^7.4",
         "intervention/image": "^2.5",
         "jeroennoten/laravel-adminlte": "^3.0",
         "laravel/framework": "^6.2",
